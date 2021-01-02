@@ -1,7 +1,7 @@
 //@version=4
 //TCY_HOCOMBO
 //benvelater
-//Credit; HPotter for KAMA and VeriGüzeldir YouTube Channel.
+//Credit; HPotter (KAMA script) and VeriGüzeldir (YouTube Channel).
 
 study(title="TCY_HO", overlay=true, resolution="")
 src = input(close, "Source", type = input.source)
