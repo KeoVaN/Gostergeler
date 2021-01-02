@@ -13,10 +13,10 @@ length2 = input(21, "EMA Length2")
 plot(ema(src, length2), color=#004aff, linewidth=1, title="EMA2")
 
 length3 = input(50, "SMA Length3")
-plot(ema(src, length3), color=#fb8c00, linewidth=1, title="SMA3")
+plot(ema(src, length3), color=#fb8c00, linewidth=1, title="SMA1")
 
 length4 = input(200, "SMA Length4")
-plot(sma(src, length4), color=#000000, linewidth=1, title="SMA4")
+plot(sma(src, length4), color=#000000, linewidth=1, title="SMA2")
 
 
 Length = input(21, "Kaufman", minval=1)
