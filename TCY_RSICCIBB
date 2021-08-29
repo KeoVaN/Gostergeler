@@ -1,4 +1,5 @@
 //@version=4
+//TCY 08.2021
 study(title="TCY_RSCCIBB", shorttitle="TCY_RSCCIBB", format=format.price, precision=2, resolution="")
 renklendirme = input(title="Renklendirme ?", type=input.bool, defval=true)
 
