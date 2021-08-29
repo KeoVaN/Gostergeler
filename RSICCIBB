@@ -1,0 +1,44 @@
+//@version=4
+study(title="TCY_RSCCIBB", shorttitle="TCY_RSCCIBB", format=format.price, precision=2, resolution="")
+renklendirme = input(title="Renklendirme ?", type=input.bool, defval=true)
+
+
+srcr = input(close, "RSI Kaynağı", type = input.source)
+lenr = input(14, minval=1, title="RSI Periyodu")
+lenc = input(20, minval=11, title="CCI Periyodu")
+lenbb = input(20, minval=1, title="BB Periyodu ")
+
+up = rma(max(change(srcr), 0), lenr)
+down = rma(-min(change(srcr), 0), lenr)
+rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - (100 / (1 + up / down))
+ma = sma(rsi, lenc)
+cci = (rsi - ma) / (0.015 * dev(rsi, lenc))
+plot(cci, "CCI", color=#000000, transp=0)
+
+
+ust = input(100, "CCI Alt Sınır", minval=1, maxval=150 )
+alt = input(-100, "CCI Üst Sınır", minval=-1, maxval=-150 )
+//orta= input(0, "Nötr Hattı")
+ustbant = plot(ust, "Üst Bant", color=#C0C0C0)
+altbant = plot(alt, "Alt Bant", color=#C0C0C0)
+
+
+
+fark = input(0, minval=-1, title="Fark")
+
+mult = input(2.0, minval=0.001, maxval=50, title="StdDev")
+basis = sma(cci, lenbb)
+dev = mult * stdev(cci, lenbb)
+upper = basis + dev
+lower = basis - dev
+offset = input(0, "Offset", type = input.integer, minval = -500, maxval = 500)
+
+
+p1 = plot(upper - fark, "Upper", color=#26a69a, offset = offset)
+p2 = plot(lower + fark, "Lower", color=#26a69a, offset = offset)
+
+
+p1icerde = renklendirme ? (upper < ust ? color.red : na) : na
+p2icerde = renklendirme ? (lower > alt ? color.green : na) : na
+fill(ustbant, altbant, title="Üst BB İçerde", color=p1icerde)
+fill(ustbant, altbant, title="Alt BB İçerde", color=p2icerde)
