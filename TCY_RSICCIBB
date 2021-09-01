@@ -1,7 +1,7 @@
 //@version=4
 //TCY 08.2021
 study(title="TCY_RSCCIBB", shorttitle="TCY_RSCCIBB", format=format.price, precision=2, resolution="")
-renklendirme = input(title="Renklendirme ?", type=input.bool, defval=true)
+renklendirme = input(title="Renklendirme", type=input.bool, defval=true)
 
 
 srcr = input(close, "RSI Kaynağı", type = input.source)
@@ -19,7 +19,7 @@ plot(cci, "CCI", color=#000000, transp=0)
 
 ust = input(100, "CCI Alt Sınır", minval=1, maxval=150 )
 alt = input(-100, "CCI Üst Sınır", minval=-1, maxval=-150 )
-//orta= input(0, "Nötr Hattı")
+ortabant= input(0, "Nötr Hattı")
 ustbant = plot(ust, "Üst Bant", color=#C0C0C0)
 altbant = plot(alt, "Alt Bant", color=#C0C0C0)
 
@@ -38,8 +38,14 @@ offset = input(0, "Offset", type = input.integer, minval = -500, maxval = 500)
 p1 = plot(upper - fark, "Upper", color=#26a69a, offset = offset)
 p2 = plot(lower + fark, "Lower", color=#26a69a, offset = offset)
 
+genislik=abs(lower) - upper
 
-p1icerde = renklendirme ? (upper < ust ? color.red : na) : na
-p2icerde = renklendirme ? (lower > alt ? color.green : na) : na
+//plot(genislik, "Basis", color=#FF6D00)
+//p1icerde = renklendirme ? (genislik < 0 ? color.red : na) : na
+//p2icerde = renklendirme ? (genislik > 0 ? color.green : na) : na
+//fill(ustbant, altbant, title="Üst BB İçerde", color=p1icerde)
+//fill(ustbant, altbant, title="Alt BB İçerde", color=p2icerde)
+p1icerde = renklendirme ? (upper < ust ? color.green : na) : na  //aşırı satım
+p2icerde = renklendirme ? (lower > alt ? color.red : na) : na   //aşırı alım
 fill(ustbant, altbant, title="Üst BB İçerde", color=p1icerde)
 fill(ustbant, altbant, title="Alt BB İçerde", color=p2icerde)
