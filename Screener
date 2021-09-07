@@ -1,0 +1,222 @@
+//@version=4
+study("Screener", shorttitle = "🔍", overlay = true)
+
+src = input(close, "Source", type = input.source)
+lenght = input(5, "HO1 Periyot")
+lenght2 = input(9, "HO2 Periyot")
+
+
+
+ho1=sma(src, lenght)
+ho2=sma(src, lenght2)
+
+//plot(ho1, color=#004aff, linewidth=1, title="HO1")
+//plot(ho2, color=#ff0000, linewidth=1, title="HO2")
+
+//Inputs
+timeFrame = timeframe.period
+textColor = input(defval = color.black, title = "Text Color")
+
+// Symbols 
+s01 = input('NSE:ADANIPORTS', type=input.symbol, title ="Symbol 01")
+s02 = input('NSE:APOLLOTYRE', type=input.symbol, title="Symbol 02")
+s03 = input('NSE:BANKBARODA', type=input.symbol, title="Symbol 03")
+s04 = input('NSE:BPCL', type=input.symbol, title="Symbol 04")
+s05 = input('NSE:CANBK', type=input.symbol, title="Symbol 05")
+s06 = input('NSE:CHOLAFIN', type=input.symbol, title="Symbol 06")
+s07 = input('NSE:CUMMINSIND', type=input.symbol, title="Symbol 07")
+s08 = input('NSE:DLF', type=input.symbol, title="Symbol 08")
+s09 = input('NSE:FEDERALBNK', type=input.symbol, title="Symbol 09")
+s10 = input('NSE:HINDALCO', type=input.symbol, title="Symbol 10")
+s11 = input('NSE:HINDCOPPER', type=input.symbol, title="Symbol 11")
+s12 = input('NSE:JINDALSTEL', type=input.symbol, title="Symbol 12")
+s13 = input('NSE:JSWSTEEL', type=input.symbol, title="Symbol 13")
+s14 = input('NSE:MOTHERSUMI', type=input.symbol, title="Symbol 14")
+s15 = input('NSE:M_MFIN', type=input.symbol, title="Symbol 15")
+s16 = input('NSE:SAIL', type=input.symbol, title="Symbol 16")
+s17 = input('NSE:TATACHEM', type=input.symbol, title="Symbol 17")
+s18 = input('NSE:TATACONSUM', type=input.symbol, title="Symbol 18")
+s19 = input('NSE:TATAMOTORS', type=input.symbol, title="Symbol 19")
+s20 = input('NSE:UPL', type=input.symbol, title="Symbol 20")
+//s21 = input('', type=input.symbol, title="Symbol 21")
+//s22 = input('', type=input.symbol, title="Symbol 22")
+//s23 = input('', type=input.symbol, title="Symbol 23")
+//s24 = input('', type=input.symbol, title="Symbol 24")
+//s25 = input('', type=input.symbol, title="Symbol 25")
+//s26 = input('', type=input.symbol, title="Symbol 26")
+//s27 = input('', type=input.symbol, title="Symbol 27")
+//s28 = input('', type=input.symbol, title="Symbol 28")
+//s29 = input('', type=input.symbol, title="Symbol 29")
+//s30 = input('', type=input.symbol, title="Symbol 30")
+//s31 = input('', type=input.symbol, title="Symbol 31")
+//s32 = input('', type=input.symbol, title="Symbol 32")
+//s33 = input('', type=input.symbol, title="Symbol 33")
+//s34 = input('', type=input.symbol, title="Symbol 34")
+//s35 = input('', type=input.symbol, title="Symbol 35")
+//s36 = input('', type=input.symbol, title="Symbol 36")
+//s37 = input('', type=input.symbol, title="Symbol 37")
+//s38 = input('', type=input.symbol, title="Symbol 38")
+//s39 = input('', type=input.symbol, title="Symbol 39")
+//s40 = input('', type=input.symbol, title="Symbol 40")
+
+
+//Screener Function
+screenerFunc() =>
+
+    //longConditon = beta > betaValue and alpha > 0
+    //shortConditon = beta > betaValue and alpha < 0
+    //[beta, longConditon, shortConditon]
+    
+    longConditon = ho1 > ho2
+    shortConditon = ho2 > ho1
+    [src, longConditon, shortConditon]
+
+
+// Running Functions for all sybmols //
+[v01, cI01, cII01] = security(s01, timeFrame, screenerFunc())
+[v02, cI02, cII02] = security(s02, timeFrame, screenerFunc())
+[v03, cI03, cII03] = security(s03, timeFrame, screenerFunc())
+[v04, cI04, cII04] = security(s04, timeFrame, screenerFunc())
+[v05, cI05, cII05] = security(s05, timeFrame, screenerFunc())
+[v06, cI06, cII06] = security(s06, timeFrame, screenerFunc())
+[v07, cI07, cII07] = security(s07, timeFrame, screenerFunc())
+[v08, cI08, cII08] = security(s08, timeFrame, screenerFunc())
+[v09, cI09, cII09] = security(s09, timeFrame, screenerFunc())
+[v10, cI10, cII10] = security(s10, timeFrame, screenerFunc())
+[v11, cI11, cII11] = security(s11, timeFrame, screenerFunc())
+[v12, cI12, cII12] = security(s12, timeFrame, screenerFunc())
+[v13, cI13, cII13] = security(s13, timeFrame, screenerFunc())
+[v14, cI14, cII14] = security(s14, timeFrame, screenerFunc())
+[v15, cI15, cII15] = security(s15, timeFrame, screenerFunc())
+[v16, cI16, cII16] = security(s16, timeFrame, screenerFunc())
+[v17, cI17, cII17] = security(s17, timeFrame, screenerFunc())
+[v18, cI18, cII18] = security(s18, timeFrame, screenerFunc())
+[v19, cI19, cII19] = security(s19, timeFrame, screenerFunc())
+[v20, cI20, cII20] = security(s20, timeFrame, screenerFunc())
+//[v21, cI21, cII21] = security(s21, timeFrame, screenerFunc())
+//[v22, cI22, cII22] = security(s22, timeFrame, screenerFunc())
+//[v23, cI23, cII23] = security(s23, timeFrame, screenerFunc())
+//[v24, cI24, cII24] = security(s24, timeFrame, screenerFunc())
+//[v25, cI25, cII25] = security(s25, timeFrame, screenerFunc())
+//[v26, cI26, cII26] = security(s26, timeFrame, screenerFunc())
+//[v27, cI27, cII27] = security(s27, timeFrame, screenerFunc())
+//[v28, cI28, cII28] = security(s28, timeFrame, screenerFunc())
+//[v29, cI29, cII29] = security(s29, timeFrame, screenerFunc())
+//[v30, cI30, cII30] = security(s30, timeFrame, screenerFunc())
+//[v31, cI31, cII31] = security(s31, timeFrame, screenerFunc())
+//[v32, cI32, cII32] = security(s32, timeFrame, screenerFunc())
+//[v33, cI33, cII33] = security(s33, timeFrame, screenerFunc())
+//[v34, cI34, cII34] = security(s34, timeFrame, screenerFunc())
+//[v35, cI35, cII35] = security(s35, timeFrame, screenerFunc())
+//[v36, cI36, cII36] = security(s36, timeFrame, screenerFunc())
+//[v37, cI37, cII37] = security(s37, timeFrame, screenerFunc())
+//[v38, cI38, cII38] = security(s38, timeFrame, screenerFunc())
+//[v39, cI39, cII39] = security(s39, timeFrame, screenerFunc())
+//[v40, cI40, cII40] = security(s40, timeFrame, screenerFunc())
+
+// Screener label //
+
+//scr_label_long = 'Use 5min for Live Intraday \n\n +α & β > ' + tostring(ho1, '#.##') + '\n\n'
+scr_label_long = '\n\n Uzun Kısadan Küçük ' + '\n\n'
+
+scr_label_long := cI01 ? scr_label_long + tostring(v01, '#.## ') + s01 + '\n' : scr_label_long
+scr_label_long := cI02 ? scr_label_long + tostring(v02, '#.## ') + s02 + '\n' : scr_label_long
+scr_label_long := cI03 ? scr_label_long + tostring(v03, '#.## ') + s03 + '\n' : scr_label_long
+scr_label_long := cI04 ? scr_label_long + tostring(v04, '#.## ') + s04 + '\n' : scr_label_long
+scr_label_long := cI05 ? scr_label_long + tostring(v05, '#.## ') + s05 + '\n' : scr_label_long
+scr_label_long := cI06 ? scr_label_long + tostring(v06, '#.## ') + s06 + '\n' : scr_label_long
+scr_label_long := cI07 ? scr_label_long + tostring(v07, '#.## ') + s07 + '\n' : scr_label_long
+scr_label_long := cI08 ? scr_label_long + tostring(v08, '#.## ') + s08 + '\n' : scr_label_long
+scr_label_long := cI09 ? scr_label_long + tostring(v09, '#.## ') + s09 + '\n' : scr_label_long
+scr_label_long := cI10 ? scr_label_long + tostring(v10, '#.## ') + s10 + '\n' : scr_label_long
+scr_label_long := cI11 ? scr_label_long + tostring(v11, '#.## ') + s11 + '\n' : scr_label_long
+scr_label_long := cI12 ? scr_label_long + tostring(v12, '#.## ') + s12 + '\n' : scr_label_long
+scr_label_long := cI13 ? scr_label_long + tostring(v13, '#.## ') + s13 + '\n' : scr_label_long
+scr_label_long := cI14 ? scr_label_long + tostring(v14, '#.## ') + s14 + '\n' : scr_label_long
+scr_label_long := cI15 ? scr_label_long + tostring(v15, '#.## ') + s15 + '\n' : scr_label_long
+scr_label_long := cI16 ? scr_label_long + tostring(v16, '#.## ') + s16 + '\n' : scr_label_long
+scr_label_long := cI17 ? scr_label_long + tostring(v17, '#.## ') + s17 + '\n' : scr_label_long
+scr_label_long := cI18 ? scr_label_long + tostring(v18, '#.## ') + s18 + '\n' : scr_label_long
+scr_label_long := cI19 ? scr_label_long + tostring(v19, '#.## ') + s19 + '\n' : scr_label_long
+scr_label_long := cI20 ? scr_label_long + tostring(v20, '#.## ') + s20 + '\n' : scr_label_long
+//scr_label_long := cI21 ? scr_label_long + tostring(v21, '#.## ') + s21 + '\n' : scr_label_long
+//scr_label_long := cI22 ? scr_label_long + tostring(v22, '#.## ') + s22 + '\n' : scr_label_long
+//scr_label_long := cI23 ? scr_label_long + tostring(v23, '#.## ') + s23 + '\n' : scr_label_long
+//scr_label_long := cI24 ? scr_label_long + tostring(v24, '#.## ') + s24 + '\n' : scr_label_long
+//scr_label_long := cI25 ? scr_label_long + tostring(v25, '#.## ') + s25 + '\n' : scr_label_long
+//scr_label_long := cI26 ? scr_label_long + tostring(v26, '#.## ') + s26 + '\n' : scr_label_long
+//scr_label_long := cI27 ? scr_label_long + tostring(v27, '#.## ') + s27 + '\n' : scr_label_long
+//scr_label_long := cI28 ? scr_label_long + tostring(v28, '#.## ') + s28 + '\n' : scr_label_long
+//scr_label_long := cI29 ? scr_label_long + tostring(v29, '#.## ') + s29 + '\n' : scr_label_long
+//scr_label_long := cI30 ? scr_label_long + tostring(v30, '#.## ') + s30 + '\n' : scr_label_long
+//scr_label_long := cI31 ? scr_label_long + tostring(v31, '#.## ') + s31 + '\n' : scr_label_long
+//scr_label_long := cI32 ? scr_label_long + tostring(v32, '#.## ') + s32 + '\n' : scr_label_long
+//scr_label_long := cI33 ? scr_label_long + tostring(v33, '#.## ') + s33 + '\n' : scr_label_long
+//scr_label_long := cI34 ? scr_label_long + tostring(v34, '#.## ') + s34 + '\n' : scr_label_long
+//scr_label_long := cI35 ? scr_label_long + tostring(v35, '#.## ') + s35 + '\n' : scr_label_long
+//scr_label_long := cI36 ? scr_label_long + tostring(v36, '#.## ') + s36 + '\n' : scr_label_long
+//scr_label_long := cI37 ? scr_label_long + tostring(v37, '#.## ') + s37 + '\n' : scr_label_long
+//scr_label_long := cI38 ? scr_label_long + tostring(v38, '#.## ') + s38 + '\n' : scr_label_long
+//scr_label_long := cI39 ? scr_label_long + tostring(v39, '#.## ') + s39 + '\n' : scr_label_long
+//scr_label_long := cI40 ? scr_label_long + tostring(v40, '#.## ') + s40 + '\n' : scr_label_long
+
+
+//scr_label_short = '\n\n-α & β > ' + tostring(ho1, '#.##') + '\n\n'
+scr_label_short = '\n\n Kısa Uzundan Küçük ' + '\n\n'
+
+scr_label_short := cII01 ? scr_label_short + tostring(v01, '#.## ') + s01 + '\n' : scr_label_short
+scr_label_short := cII02 ? scr_label_short + tostring(v02, '#.## ') + s02 + '\n' : scr_label_short
+scr_label_short := cII03 ? scr_label_short + tostring(v03, '#.## ') + s03 + '\n' : scr_label_short
+scr_label_short := cII04 ? scr_label_short + tostring(v04, '#.## ') + s04 + '\n' : scr_label_short
+scr_label_short := cII05 ? scr_label_short + tostring(v05, '#.## ') + s05 + '\n' : scr_label_short
+scr_label_short := cII06 ? scr_label_short + tostring(v06, '#.## ') + s06 + '\n' : scr_label_short
+scr_label_short := cII07 ? scr_label_short + tostring(v07, '#.## ') + s07 + '\n' : scr_label_short
+scr_label_short := cII08 ? scr_label_short + tostring(v08, '#.## ') + s08 + '\n' : scr_label_short
+scr_label_short := cII09 ? scr_label_short + tostring(v09, '#.## ') + s09 + '\n' : scr_label_short
+scr_label_short := cII10 ? scr_label_short + tostring(v10, '#.## ') + s10 + '\n' : scr_label_short
+scr_label_short := cII11 ? scr_label_short + tostring(v11, '#.## ') + s11 + '\n' : scr_label_short
+scr_label_short := cII12 ? scr_label_short + tostring(v12, '#.## ') + s12 + '\n' : scr_label_short
+scr_label_short := cII13 ? scr_label_short + tostring(v13, '#.## ') + s13 + '\n' : scr_label_short
+scr_label_short := cII14 ? scr_label_short + tostring(v14, '#.## ') + s14 + '\n' : scr_label_short
+scr_label_short := cII15 ? scr_label_short + tostring(v15, '#.## ') + s15 + '\n' : scr_label_short
+scr_label_short := cII16 ? scr_label_short + tostring(v16, '#.## ') + s16 + '\n' : scr_label_short
+scr_label_short := cII17 ? scr_label_short + tostring(v17, '#.## ') + s17 + '\n' : scr_label_short
+scr_label_short := cII18 ? scr_label_short + tostring(v18, '#.## ') + s18 + '\n' : scr_label_short
+scr_label_short := cII19 ? scr_label_short + tostring(v19, '#.## ') + s19 + '\n' : scr_label_short
+scr_label_short := cII20 ? scr_label_short + tostring(v20, '#.## ') + s20 + '\n' : scr_label_short
+//scr_label_short := cII21 ? scr_label_short + tostring(v21, '#.## ') + s21 + '\n' : scr_label_short
+//scr_label_short := cII22 ? scr_label_short + tostring(v22, '#.## ') + s22 + '\n' : scr_label_short
+//scr_label_short := cII23 ? scr_label_short + tostring(v23, '#.## ') + s23 + '\n' : scr_label_short
+//scr_label_short := cII24 ? scr_label_short + tostring(v24, '#.## ') + s24 + '\n' : scr_label_short
+//scr_label_short := cII25 ? scr_label_short + tostring(v25, '#.## ') + s25 + '\n' : scr_label_short
+//scr_label_short := cII26 ? scr_label_short + tostring(v26, '#.## ') + s26 + '\n' : scr_label_short
+//scr_label_short := cII27 ? scr_label_short + tostring(v27, '#.## ') + s27 + '\n' : scr_label_short
+//scr_label_short := cII28 ? scr_label_short + tostring(v28, '#.## ') + s28 + '\n' : scr_label_short
+//scr_label_short := cII29 ? scr_label_short + tostring(v29, '#.## ') + s29 + '\n' : scr_label_short
+//scr_label_short := cII30 ? scr_label_short + tostring(v30, '#.## ') + s30 + '\n' : scr_label_short
+//scr_label_short := cII31 ? scr_label_short + tostring(v31, '#.## ') + s31 + '\n' : scr_label_short
+//scr_label_short := cII32 ? scr_label_short + tostring(v32, '#.## ') + s32 + '\n' : scr_label_short
+//scr_label_short := cII33 ? scr_label_short + tostring(v33, '#.## ') + s33 + '\n' : scr_label_short
+//scr_label_short := cII34 ? scr_label_short + tostring(v34, '#.## ') + s34 + '\n' : scr_label_short
+//scr_label_short := cII35 ? scr_label_short + tostring(v35, '#.## ') + s35 + '\n' : scr_label_short
+//scr_label_short := cII36 ? scr_label_short + tostring(v36, '#.## ') + s36 + '\n' : scr_label_short
+//scr_label_short := cII37 ? scr_label_short + tostring(v37, '#.## ') + s37 + '\n' : scr_label_short
+//scr_label_short := cII38 ? scr_label_short + tostring(v38, '#.## ') + s38 + '\n' : scr_label_short
+//scr_label_short := cII39 ? scr_label_short + tostring(v39, '#.## ') + s39 + '\n' : scr_label_short
+//scr_label_short := cII40 ? scr_label_short + tostring(v40, '#.## ') + s40 + '\n' : scr_label_short
+
+scr_label = scr_label_long + scr_label_short
+
+// Plot Label
+xPosition = timenow + round(change(time)*1)
+yPosition = highest(24)
+labelColor = color.new(color.white, 100)
+
+lab_l = label.new(
+          xPosition, yPosition, scr_label, 
+          color=labelColor, 
+          textcolor=textColor, 
+          style =  label.style_label_left,
+          textalign=text.align_left,
+          xloc=xloc.bar_time, yloc = yloc.price)
+label.delete(lab_l[1])
