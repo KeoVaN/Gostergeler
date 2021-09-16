@@ -1,33 +1,86 @@
 //@version=4
-//TCY_HOCOMBO
-//benvelater
-//Credit; HPotter (KAMA script) and VeriGüzeldir (YouTube Channel).
-
 study(title="TCY_HO", overlay=true, resolution="")
 src = input(close, "Source", type = input.source)
 
-length1 = input(9, "EMA Length1")
-plot(ema(src, length1), color=#ff0000, linewidth=1, title="EMA1")
 
-length2 = input(21, "EMA Length2")
-plot(ema(src, length2), color=#004aff, linewidth=1, title="EMA2")
+opt1 = input(10, "HO1 Periyot")
+masec1 = input(title="HO1 MA Tipi", defval="SMA", options=["RMA", "SMA", "EMA", "WMA"])
+matipi1(source, opt1) =>
+	if  masec1 == "RMA"
+		rma(source, opt1)
+	else
+		if masec1 == "SMA"
+			sma(source, opt1)
+		else
+			if masec1 == "EMA"
+				ema(source, opt1)
+			else
+				wma(source, opt1)
 
-length3 = input(50, "SMA Length3")
-plot(ema(src, length3), color=#fb8c00, linewidth=1, title="SMA1")
 
-length4 = input(200, "SMA Length4")
-plot(sma(src, length4), color=#000000, linewidth=1, title="SMA2")
+opt2 = input(20, "HO2 Periyot")
+masec2 = input(title="HO2 MA Tipi", defval="SMA", options=["RMA", "SMA", "EMA", "WMA"])
+matipi2(source, opt1) =>
+	if  masec2 == "RMA"
+		rma(source, opt2)
+	else
+		if masec2 == "SMA"
+			sma(source, opt2)
+		else
+			if masec2 == "EMA"
+				ema(source, opt2)
+			else
+				wma(source, opt2)
 
 
-Length = input(21, "Kaufman", minval=1)
+opt3 = input(50, "HO3 Periyot")
+masec3 = input(title="HO3 MA Tipi", defval="SMA", options=["RMA", "SMA", "EMA", "WMA"])
+matipi3(source, opt1) =>
+	if  masec3 == "RMA"
+		rma(source, opt3)
+	else
+		if masec3 == "SMA"
+			sma(source, opt3)
+		else
+			if masec3 == "EMA"
+				ema(source, opt3)
+			else
+				wma(source, opt3)
+
+
+opt4 = input(200, "HO4 Periyot")
+masec4 = input(title="HO4 MA Tipi", defval="SMA", options=["RMA", "SMA", "EMA", "WMA"])
+matipi4(source, opt1) =>
+	if  masec4 == "RMA"
+		rma(source, opt4)
+	else
+		if masec4 == "SMA"
+			sma(source, opt4)
+		else
+			if masec4 == "EMA"
+				ema(source, opt4)
+			else
+				wma(source, opt4)
+
+
+opt5 = input(21, "Kaufman", minval=1)
 xPrice = close
 xvnoise = abs(xPrice - xPrice[1])
 nAMA = 0.0
 nfastend = 0.666
 nslowend = 0.0645
-nsignal = abs(xPrice - xPrice[Length])
-nnoise = sum(xvnoise, Length)
+nsignal = abs(xPrice - xPrice[opt5])
+nnoise = sum(xvnoise, opt5)
 nefratio = iff(nnoise != 0, nsignal / nnoise, 0)
 nsmooth = pow(nefratio * (nfastend - nslowend) + nslowend, 2) 
 nAMA := nz(nAMA[1]) + nsmooth * (xPrice - nz(nAMA[1]))
+
+
+
+plot(matipi1(src, opt1), color=#ff0000, linewidth=1, title="HO1")
+plot(matipi2(src, opt2), color=#004aff, linewidth=1, title="HO2")
+plot(matipi3(src, opt3), color=#fb8c00, linewidth=1, title="HO3")
+plot(matipi4(src, opt4), color=#000000, linewidth=1, title="HO4")
 plot(nAMA, color=#5c00ff, linewidth=1, title="KAMA")
+
+plot(close, color=#5c00ff, linewidth=1, title="KAMA")
