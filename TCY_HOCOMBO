@@ -83,4 +83,4 @@ plot(matipi3(src, opt3), color=#fb8c00, linewidth=1, title="HO3")
 plot(matipi4(src, opt4), color=#000000, linewidth=1, title="HO4")
 plot(nAMA, color=#5c00ff, linewidth=1, title="KAMA")
 
-plot(close, color=#5c00ff, linewidth=1, title="KAMA")
+
